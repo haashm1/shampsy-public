@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Database (SQLite - contains real client data, do not commit)
+backend/psychologist.db
+
+# Sensitive credentials & secrets
+backend/google-credentials.json
+backend/.env
+.env
+.env.local
+.env.*.local
+
+# Logs
+backend/notifications.log
+*.log
+npm-debug.log*
+
+# Build output
+frontend/dist/
+frontend/build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Uploaded user files (profile photos etc.)
+backend/uploads/*.jpg
+backend/uploads/*.jpeg
+backend/uploads/*.png
+backend/uploads/*.gif
+# Keep the default placeholder images
+!backend/uploads/default-doctor.jpg
+!backend/uploads/default-arjun.jpg
+
+# Test scripts (optional - remove these lines if you want them tracked)
+backend/clean-bookings.js
+backend/test-reschedule.js
+backend/test-booking.js
