@@ -6,7 +6,22 @@ import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const dbPath = path.join(__dirname, 'psychologist.db');
+let dbPath = path.join(__dirname, 'psychologist.db');
+
+if (process.env.VERCEL) {
+  const tempDbPath = path.join('/tmp', 'psychologist.db');
+  if (!fs.existsSync(tempDbPath)) {
+    try {
+      if (fs.existsSync(dbPath)) {
+        fs.copyFileSync(dbPath, tempDbPath);
+      }
+    } catch (err) {
+      console.error("Failed to copy database to /tmp:", err);
+    }
+  }
+  dbPath = tempDbPath;
+}
+
 const db = new sqlite3.Database(dbPath);
 
 db.serialize(() => {

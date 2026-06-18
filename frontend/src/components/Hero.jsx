@@ -9,7 +9,7 @@ export default function Hero({ profile, onBookClick, onAdminClick }) {
     ? profile.specialties.split(',').map(s => s.trim())
     : [];
 
-  const backendUrl = 'http://localhost:5000';
+  const backendUrl = '';
   const photoUrl = profile.photo_url
     ? profile.photo_url.startsWith('http')
       ? profile.photo_url

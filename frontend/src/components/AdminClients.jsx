@@ -16,7 +16,7 @@ export default function AdminClients({ bookings, onStartCaseSheet, onOpenCaseShe
 
   // Fetch all case sheets to link them to clients
   useEffect(() => {
-    fetch('http://localhost:5000/api/cases')
+    fetch('/api/cases')
       .then(res => res.json())
       .then(data => setClientCaseSheets(data))
       .catch(err => console.error("Error fetching cases for client details:", err));

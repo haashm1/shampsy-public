@@ -6,7 +6,10 @@ import { google } from 'googleapis';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const notificationLogPath = path.join(__dirname, 'notifications.log');
+let notificationLogPath = path.join(__dirname, 'notifications.log');
+if (process.env.VERCEL) {
+  notificationLogPath = path.join('/tmp', 'notifications.log');
+}
 
 /**
  * Creates a real Google Meet room on Google Calendar
@@ -128,7 +131,10 @@ const formatDateToDMY = (dateStr) => {
   return dateStr;
 };
 
-const dbPath = path.join(__dirname, 'psychologist.db');
+let dbPath = path.join(__dirname, 'psychologist.db');
+if (process.env.VERCEL) {
+  dbPath = path.join('/tmp', 'psychologist.db');
+}
 
 // Transporter configuration using Gmail and the user's provided App Password
 const transporter = nodemailer.createTransport({

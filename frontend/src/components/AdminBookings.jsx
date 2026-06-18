@@ -32,7 +32,7 @@ export default function AdminBookings({ bookings, onRefresh, onStartCaseSheet, o
 
   // Fetch psychologists list
   React.useEffect(() => {
-    fetch('http://localhost:5000/api/profile')
+    fetch('/api/profile')
       .then(res => res.json())
       .then(data => {
         setPsychologists(Array.isArray(data) ? data : [data]);
@@ -55,7 +55,7 @@ export default function AdminBookings({ bookings, onRefresh, onStartCaseSheet, o
   const handleCancel = async (id) => {
     if (!window.confirm("Are you sure you want to cancel/unblock this slot?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/bookings/${id}`, {
+      const res = await fetch(`/api/bookings/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: 'cancelled' })
@@ -76,7 +76,7 @@ export default function AdminBookings({ bookings, onRefresh, onStartCaseSheet, o
     setBlockSuccess('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/bookings', {
+      const res = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -110,7 +110,7 @@ export default function AdminBookings({ bookings, onRefresh, onStartCaseSheet, o
 
   const handleSaveMeetLink = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/bookings/${id}`, {
+      const res = await fetch(`/api/bookings/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ meet_link: editingMeetLinkVal })
@@ -131,7 +131,7 @@ export default function AdminBookings({ bookings, onRefresh, onStartCaseSheet, o
 
   const handleEmailMeetLink = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/bookings/${id}/email-link`, {
+      const res = await fetch(`/api/bookings/${id}/email-link`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -162,7 +162,7 @@ export default function AdminBookings({ bookings, onRefresh, onStartCaseSheet, o
     setSuccessMsg('');
 
     try {
-      const res = await fetch(`http://localhost:5000/api/bookings/${rescheduleBooking.id}`, {
+      const res = await fetch(`/api/bookings/${rescheduleBooking.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

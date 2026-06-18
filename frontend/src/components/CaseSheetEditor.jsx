@@ -30,7 +30,7 @@ export default function CaseSheetEditor({ initialCaseData, onBackToBookings }) {
   // Fetch all existing case sheets
   const fetchCases = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/cases');
+      const res = await fetch('/api/cases');
       const data = await res.json();
       setCases(data);
       return data;
@@ -129,13 +129,13 @@ export default function CaseSheetEditor({ initialCaseData, onBackToBookings }) {
       };
 
       if (selectedCaseId === 'new') {
-        res = await fetch('http://localhost:5000/api/cases', {
+        res = await fetch('/api/cases', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
       } else {
-        res = await fetch(`http://localhost:5000/api/cases/${selectedCaseId}`, {
+        res = await fetch(`/api/cases/${selectedCaseId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -167,7 +167,7 @@ export default function CaseSheetEditor({ initialCaseData, onBackToBookings }) {
     if (!window.confirm("Are you sure you want to permanently delete this clinical case sheet?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/cases/${selectedCaseId}`, {
+      const res = await fetch(`/api/cases/${selectedCaseId}`, {
         method: 'DELETE'
       });
       if (!res.ok) throw new Error("Failed to delete.");

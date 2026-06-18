@@ -19,7 +19,10 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Ensure upload directory exists
-const uploadDir = path.join(__dirname, 'uploads');
+let uploadDir = path.join(__dirname, 'uploads');
+if (process.env.VERCEL) {
+  uploadDir = path.join('/tmp', 'uploads');
+}
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
@@ -515,6 +518,10 @@ app.post('/api/bookings/:id/email-link', (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`Psychologist platform backend running at http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Psychologist platform backend running at http://localhost:${PORT}`);
+  });
+}
+
+export default app;

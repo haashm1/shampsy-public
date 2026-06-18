@@ -42,7 +42,7 @@ export default function BookingModal({ onClose, prefillData }) {
   // Fetch all existing bookings & psychologists
   useEffect(() => {
     // Fetch bookings
-    fetch('http://localhost:5000/api/bookings')
+    fetch('/api/bookings')
       .then(res => res.json())
       .then(data => {
         setExistingBookings(data);
@@ -52,7 +52,7 @@ export default function BookingModal({ onClose, prefillData }) {
       });
 
     // Fetch psychologist profiles
-    fetch('http://localhost:5000/api/profile')
+    fetch('/api/profile')
       .then(res => res.json())
       .then(data => {
         setPsychologists(Array.isArray(data) ? data : [data]);
@@ -105,7 +105,7 @@ export default function BookingModal({ onClose, prefillData }) {
     setSuccessMsg('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch('/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -173,7 +173,7 @@ export default function BookingModal({ onClose, prefillData }) {
       setNotes('');
 
       // Refresh bookings list
-      const freshRes = await fetch('http://localhost:5000/api/bookings');
+      const freshRes = await fetch('/api/bookings');
       const freshData = await freshRes.json();
       setExistingBookings(freshData);
 

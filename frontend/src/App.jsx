@@ -26,7 +26,7 @@ export default function App() {
     setShowBookingModal(true);
   };
 
-  const backendUrl = 'http://localhost:5000';
+  const backendUrl = '';
 
   // Fetch initial profile and bookings
   const fetchProfile = () => {

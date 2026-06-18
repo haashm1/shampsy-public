@@ -37,7 +37,7 @@ export default function AdminProfile({ profile, onProfileUpdate }) {
   const [unavailableDatesList, setUnavailableDatesList] = useState([]);
   const [newUnavailableDate, setNewUnavailableDate] = useState('');
 
-  const backendUrl = 'http://localhost:5000';
+  const backendUrl = '';
 
   useEffect(() => {
     if (profile) {
